@@ -21,15 +21,10 @@ import Ex1.Monom;
 
 public class Polynom implements Polynom_able{
 
-
-
 	/**
 	 * Zero (empty polynom)
 	 */
-	public Polynom() 
-	{	
-		;
-	}
+	public Polynom() {}
 
 	/**
 	 * init a Polynom from a String such as:
@@ -135,6 +130,11 @@ public class Polynom implements Polynom_able{
 	@Override
 	public boolean equals(Object p1) 
 	{
+		if(p1 instanceof Monom) {
+			Polynom tmp = new Polynom(p1.toString());
+			tmp.substract(this);
+			return tmp.isZero();
+		}
 		if(p1 instanceof Polynom_able)
 		{
 
@@ -165,6 +165,7 @@ public class Polynom implements Polynom_able{
 		if(this.isZero()) {
 			return 0;
 		}
+
 		double leftX=this.f(x0);
 		double rightX=this.f(x1);
 		if((leftX*rightX)>0) {
@@ -183,16 +184,36 @@ public class Polynom implements Polynom_able{
 		double max=Math.max(x0, x1);
 		double min=Math.min(x0, x1);
 		while(max-min>eps) {
-			half=(max+min)/2;
-			if( this.f(half)==0)
-				return half;
-			if(this.f(half)>0) {
-				max=half;
-				min=min;
+			if(max>0)
+			{	
+				half=(max+min)/2;
+				if( this.f(half)==0)
+					return half;
+				if(this.f(half)>0)
+				{
+					max=half;
+					min=min;
+				}
+				else
+				{
+					max=max;
+					min=half;
+				}
 			}
-			else {
-				max=max;
-				min=half;
+			else  // max<=0
+			{
+				half=(max+min)/2;
+				if( this.f(half)==0)
+					return half;
+				if(this.f(half)>0) 
+				{
+					max=max;
+					min=half;
+				}
+				else {
+					max=half;
+					min=min;
+				}	
 			}
 		}
 		return half;
@@ -255,21 +276,17 @@ public class Polynom implements Polynom_able{
 		this.polynom.sort(Monom._Comp);
 	}
 
-
 	public String toString() {
 		String ans = "";
-
-		for(int i=0;i<this.polynom.size();i++) {
-			//System.out.println("i is : "+i);
-
-			if(i+1<this.polynom.size()) {
-				ans +=this.polynom.get(i).get_coefficient()+"x^"+this.polynom.get(i).get_power()+"+";
-
-			}
-
-			else
-				ans +=this.polynom.get(i).get_coefficient()+"x^"+this.polynom.get(i).get_power();
+		
+		if(this.isZero()) {
+			return "0";
 		}
+		for (int i = 0; i < this.polynom.size(); i++) {
+			if(i != 0 && this.polynom.get(i).get_coefficient() >= 0) ans += "+";
+			ans += this.polynom.get(i).toString();
+		}
+		
 		return ans;
 	}
 	public LinkedList<Monom> polynom=new LinkedList<Monom>();
@@ -282,6 +299,6 @@ public class Polynom implements Polynom_able{
 			System.out.println("No applicable Polynom");
 			return null;
 		}
-			return (function)temp;
+		return (function)temp;
 	}
 }

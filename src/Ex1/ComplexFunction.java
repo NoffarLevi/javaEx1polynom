@@ -5,15 +5,12 @@ import java.util.Stack;
 
 public class ComplexFunction implements complex_function
 {
-	//int FINAL =0;
+
 	private function f1;
 	private function f2;
 	private Operation operation;
 
-
 	public ComplexFunction() {}
-
-//	public ComplexFunction(String s) {}
 	
 	public ComplexFunction(Operation g,function f1,function f2)
 	{
@@ -118,7 +115,7 @@ public class ComplexFunction implements complex_function
 	}
 
 	@Override 
-	public function initFromString(String s)   //mul(5x^2+3x,4) =>>> 5x^2+3x,4
+	public function initFromString(String s)  
 	{  
 
 		try {
@@ -154,18 +151,15 @@ public class ComplexFunction implements complex_function
 
 		}
 		
-		
-		function f= new Polynom(s);
+		function p = new Polynom(s);
+		function f= new ComplexFunction(p);
 		
 		return f;
+		
 		} catch (Exception e) {
 			throw new RuntimeException("Invalid input");
 		}
 	}
-
-	
-
-
 
 	@Override
 	public function copy() {	
@@ -274,6 +268,21 @@ public class ComplexFunction implements complex_function
 	public Operation getOp() {	
 		return this.operation;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof function) {
+			function temp=(ComplexFunction)new ComplexFunction().initFromString(obj.toString());
+			for (double i = -100; i < 100; i=1+0.1) {
+				if(this.f(i)!=temp.f(i))
+					return false;
+			}
+			return true;
+		}
+		return false;
+		
+		
+		
+	}
 	
 	public String toString() {
 		if(f2==null) {
@@ -288,7 +297,7 @@ public class ComplexFunction implements complex_function
 		case Times:
 			return "mul"+ans;
 		case Min:
-			return "min"+ans;
+			return "min"+ans; 
 		case Max:
 			return "max"+ans;
 		case Comp:

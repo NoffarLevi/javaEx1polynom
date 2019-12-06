@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.regex.*;
 
+import org.hamcrest.core.IsInstanceOf;
+
 
 /**
  * This class represents a simple "Monom" of shape a*x^b, where a is a real number and a is an integer (summed a none negative), 
@@ -256,10 +258,8 @@ public class Monom implements function {
 	private static Monom getNewZeroMonom() {
 		return new Monom(ZERO);
 	}
-
 	private double _coefficient;
 	private int _power;
-
 
 	@Override
 	public function initFromString(String s) {
@@ -278,6 +278,21 @@ public class Monom implements function {
 		
 		function fc=new Monom(this.toString());
 		return fc ;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Polynom_able) return obj.equals(this); 
+		if(obj instanceof Monom) {
+			Monom tmp=(Monom)obj;
+			if(this.get_coefficient()==0&&tmp.get_coefficient()==0)
+				return true;
+			else if(this.get_coefficient()!=tmp.get_coefficient()||this.get_power()!=tmp.get_power())
+				return false;
+			else
+				return true;
+		}
+		return false;
 	}
 
 }
