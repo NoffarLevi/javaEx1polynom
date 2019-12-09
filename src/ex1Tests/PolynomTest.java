@@ -62,8 +62,8 @@ class PolynomTest {
 		p2.add(pa2);	
 
 
-		assertEquals("3.0x^4+-5.0x^3+-2.0x^2+0.0x^0", p1.toString());
-		assertEquals("3.0x^4+-5.0x^3+7.0x^2+-3.0x^1+6.0x^0", p2.toString());
+		assertEquals("3.0x^4-5.0x^3-2.0x^2+0.0", p1.toString());
+		assertEquals("3.0x^4-5.0x^3+7.0x^2-3.0x+6.0", p2.toString());
 
 	}
 
@@ -84,11 +84,11 @@ class PolynomTest {
 		p1.add(m1);
 		p2.add(m2);
 
-		assertEquals("-1.0x^2+5.0x^1+-7.0x^0", p1.toString());
-		assertEquals("-1.0x^3+-9.0x^1+6.0x^0", p2.toString());
+		assertEquals("-1.0x^2+5.0x-7.0", p1.toString());
+		assertEquals("-1.0x^3-9.0x+6.0", p2.toString());
 
 		p1.add(m);
-		assertEquals("2.5x^2+5.0x^1+-7.0x^0", p1.toString());
+		assertEquals("2.5x^2+5.0x-7.0", p1.toString());
 
 
 	}
@@ -107,8 +107,8 @@ class PolynomTest {
 		Polynom p2=new Polynom(a);
 		p2.substract(pa2);
 
-		assertEquals("3.0x^4+-5.0x^3+2.0x^2+4.0x^0", p1.toString());
-		assertEquals("3.0x^4+-5.0x^3+-7.0x^2+3.0x^1+-2.0x^0", p2.toString());
+		assertEquals("3.0x^4-5.0x^3+2.0x^2+4.0", p1.toString());
+		assertEquals("3.0x^4-5.0x^3-7.0x^2+3.0x-2.0", p2.toString());
 
 	}
 
@@ -126,8 +126,8 @@ class PolynomTest {
 		Polynom p2=new Polynom(a);
 		p2.multiply(pa2);
 
-		assertEquals("-6.0x^6+34.0x^5+-46.0x^4+10.0x^3", p1.toString());
-		assertEquals("21.0x^6+-35.0x^5+-3.0x^4+5.0x^3", p2.toString());
+		assertEquals("-6.0x^6+34.0x^5-46.0x^4+10.0x^3", p1.toString());
+		assertEquals("21.0x^6-35.0x^5-3.0x^4+5.0x^3", p2.toString());
 	}
 
 	@Test
@@ -188,8 +188,8 @@ class PolynomTest {
 
 		System.out.println(r1);
 		System.out.println(r2);
-		assertEquals(1.6666666865348816, r1);
-		assertEquals(-2.1149075776338577, r2);
+		assertEquals(1.6666666865348816, r1,0.0001);
+		assertEquals(-2.1149075776338577, r2,0.0001);
 	}
 
 	@Test
@@ -233,10 +233,10 @@ class PolynomTest {
 		Polynom_able pa3=p3.derivative();
 		Polynom_able pa4=pa2.derivative();
 
-		assertEquals("6.0x^1+-5.0x^0", pa1.toString());
-		assertEquals("-6.0x^2+8.0x^0", pa2.toString());
-		assertEquals("14.0x^1+0.0x^0", pa3.toString());
-		assertEquals("-12.0x^1+0.0x^0",pa4.toString());
+		assertEquals("6.0x-5.0", pa1.toString());
+		assertEquals("-6.0x^2+8.0", pa2.toString());
+		assertEquals("14.0x+0.0", pa3.toString());
+		assertEquals("-12.0x+0.0",pa4.toString());
 
 
 	}
@@ -270,8 +270,8 @@ class PolynomTest {
 		p1.multiply(m1);
 		p2.multiply(m2);
 
-		assertEquals("10.0x^4+8.0x^2+-12.0x^1", p1.toString());
-		assertEquals("1.0x^4+-2.5x^3+3.75x^2", p2.toString());
+		assertEquals("10.0x^4+8.0x^2-12.0x", p1.toString());
+		assertEquals("1.0x^4-2.5x^3+3.75x^2", p2.toString());
 
 	}
 
@@ -279,15 +279,15 @@ class PolynomTest {
 	void testToString() {
 		String a="2x^2-x^2";
 		String b="2x^3+10x-4-5x+6-6";
-		String c="-4x^4+7x^4-5x^3";
+		String c="-4x^4-7x^4-5x^3";
 
 		Polynom p1=new Polynom(a);
 		Polynom p2=new Polynom(b);
 		Polynom p3=new Polynom(c);
 
 		assertEquals("1.0x^2", p1.toString());
-		assertEquals("2.0x^3+5.0x^1+-4.0x^0", p2.toString());
-		assertEquals("3.0x^4+-5.0x^3", p3.toString());
+		assertEquals("2.0x^3+5.0x-4.0", p2.toString());
+		assertEquals("-11.0x^4-5.0x^3", p3.toString());
 
 	}
 
@@ -304,9 +304,9 @@ class PolynomTest {
 		Polynom p3=(Polynom) new Polynom().initFromString(c);
 
 
-		assertEquals("3.0x^5+3.0x^4+-2.4x^1+-6.0x^0", p1.toString());
-		assertEquals("7.0x^7+6.0x^1+-2.0x^0", p2.toString());
-		assertEquals("13.0x^5+-21.0x^1+-5.0x^0", p3.toString());
+		assertEquals("3.0x^5+3.0x^4-2.4x-6.0", p1.toString());
+		assertEquals("7.0x^7+6.0x-2.0", p2.toString());
+		assertEquals("13.0x^5-21.0x-5.0", p3.toString());
 	}
 	
 	@Test

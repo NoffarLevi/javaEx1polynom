@@ -24,6 +24,8 @@ public class Polynom implements Polynom_able{
 	/**
 	 * Zero (empty polynom)
 	 */
+
+
 	public Polynom() {}
 
 	/**
@@ -50,7 +52,12 @@ public class Polynom implements Polynom_able{
 		this.polynom.sort(Monom._Comp);
 
 	}
+	public static void main(String[] args) {
+		Polynom p=new Polynom("-2x^2-5x+4");
 
+		double c=p.root(0,2 , Monom.EPSILON);
+		System.out.println(c);
+	}
 
 	@Override
 	public double f(double x) 
@@ -85,10 +92,7 @@ public class Polynom implements Polynom_able{
 			{
 				polynom.get(i).add(m1);
 				return;
-
 			}
-
-
 		}
 		polynom.add(m1)   ;  // why is this here??
 		polynom.sort(Monom._Comp);
@@ -132,12 +136,11 @@ public class Polynom implements Polynom_able{
 	{
 		if(p1 instanceof Monom) {
 			Polynom tmp = new Polynom(p1.toString());
-			tmp.substract(this);
+			tmp.substract(this); //uses function subtract to check equivalence if result is zero then they are equal
 			return tmp.isZero();
 		}
 		if(p1 instanceof Polynom_able)
 		{
-
 			Polynom_able temp=this.copy();
 			temp.substract((Polynom_able)p1);
 			return temp.isZero();
@@ -148,14 +151,12 @@ public class Polynom implements Polynom_able{
 	@Override
 	public boolean isZero() 
 	{
-
 		for (int i=0; i<this.polynom.size(); i++) 
 		{
 			if (!(this.polynom.get(i).isZero()))
 			{
 				return false;
 			}
-
 		}
 		return true;
 	}
@@ -165,56 +166,42 @@ public class Polynom implements Polynom_able{
 		if(this.isZero()) {
 			return 0;
 		}
+		double leftX=this.f(x0); //computes f(x) with one bound 
+		double rightX=this.f(x1); //computes f(x) with other bound
 
-		double leftX=this.f(x0);
-		double rightX=this.f(x1);
-		if((leftX*rightX)>0) {
+		if((leftX*rightX)>0) { //if true function doesn't even touch x axis 
 			{ throw new RuntimeException("According to Erech Habenaim there is no root");
 
 			}
 		}
 
-		if(leftX==0)
-			return x0;
-		if(rightX==0)
-			return x1;
+		if(leftX==0)  //means functions reset at one of the given points
+			return x0;//
+		if(rightX==0)//
+			return x1;//
 
 
-		double half=0;
-		double max=Math.max(x0, x1);
-		double min=Math.min(x0, x1);
-		while(max-min>eps) {
-			if(max>0)
-			{	
-				half=(max+min)/2;
-				if( this.f(half)==0)
-					return half;
-				if(this.f(half)>0)
-				{
-					max=half;
-					min=min;
-				}
-				else
-				{
-					max=max;
-					min=half;
-				}
-			}
-			else  // max<=0
+		double max=Math.max(x0, x1);//right side range
+		double min=Math.min(x0, x1);//left side range
+		double half=(max+min)/2; 
+
+		while(max-min>eps) 
+		{
+			if(this.f(half)==0)
+				return half;
+			if(this.f(max)*this.f(half)<0)  
 			{
+				max=max;
+				min=half;
 				half=(max+min)/2;
-				if( this.f(half)==0)
-					return half;
-				if(this.f(half)>0) 
-				{
-					max=max;
-					min=half;
-				}
-				else {
-					max=half;
-					min=min;
-				}	
 			}
+			else
+			{ 
+				max=half;
+				min=min;	
+				half=(max+min)/2;
+			}
+
 		}
 		return half;
 	}
@@ -278,7 +265,7 @@ public class Polynom implements Polynom_able{
 
 	public String toString() {
 		String ans = "";
-		
+
 		if(this.isZero()) {
 			return "0";
 		}
@@ -286,7 +273,7 @@ public class Polynom implements Polynom_able{
 			if(i != 0 && this.polynom.get(i).get_coefficient() >= 0) ans += "+";
 			ans += this.polynom.get(i).toString();
 		}
-		
+
 		return ans;
 	}
 	public LinkedList<Monom> polynom=new LinkedList<Monom>();
@@ -301,4 +288,5 @@ public class Polynom implements Polynom_able{
 		}
 		return (function)temp;
 	}
+
 }
