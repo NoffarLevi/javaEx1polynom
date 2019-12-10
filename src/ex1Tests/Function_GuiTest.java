@@ -23,8 +23,6 @@ class Function_GuiTest {
 		function f3=new ComplexFunction().initFromString("max(plus(-3x^4,plus(12x,2x^4+0.5x)),4x)");
 		function f4=new ComplexFunction().initFromString("min(34x^2,div(11x,76x^2))");
 
-
-
 		Functions_GUI funcGui= new Functions_GUI();
 
 		funcGui.add(f1);
@@ -39,22 +37,19 @@ class Function_GuiTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
 		try {
 			funcGui_2.initFromFile("gudum.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		boolean result=	funcGui.containsAll(funcGui_2);
-		Range rx = new Range(-10,10);
+		Range rx = new Range(-15,15);
 		Range ry = new Range(-10,10);
 		int resolution=500;
 		funcGui.drawFunctions(700, 700, rx, ry, resolution);;
 		assertTrue(result);
-
-
 	}
+	
 	@Test
 	void testinitJson() {
 		Functions_GUI f1=new Functions_GUI();;

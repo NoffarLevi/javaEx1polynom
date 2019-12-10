@@ -2,13 +2,13 @@
 	"width" : 700,
 	"height" : 700,
 	"rx" : {
-			"_min" : -20,
-			"_max" : 20
+			"_min" : -10,
+			"_max" : 10
 		},
 
 	"ry" : {
-			"_min" : -20,
-			"_max" : 20
+			"_min" : -10,
+			"_max" : 10
 		},
 
 	"resolution" :1000,

@@ -120,13 +120,8 @@ class MonomTest {
 			catch (Exception e) {
 
 			}
-
-
-
 		}
-
 		assertEquals(4,result);	
-
 	}
 
 
@@ -213,12 +208,15 @@ class MonomTest {
 
 	@Test
 	void testCopy() {
-	//	Monom m = new Monom(3.7,9);
-//		Monom a=new Monom(m.copy().toString());
-		//assertEquals("3.7x^9",a.toString());
+		Monom m = new Monom(3.7,9);
+		Monom a=new Monom(m.copy().toString());
+		assertEquals(m.toString(),a.toString());
 		Monom expected = new Monom(3.7, 9);
 		Monom actual = (Monom) expected.copy();
 		assertEquals(expected, actual);
+		
+		m.multipy(new Monom(2,0));
+		assertFalse(m.toString().equals(a.toString()));		
 	}
 
 }

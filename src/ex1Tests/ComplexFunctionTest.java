@@ -15,15 +15,7 @@ import Ex1.function;
 class ComplexFunctionTest {
 
 	@Test
-	void testUniqCases() {
-		Polynom polynom = new Polynom ("2x^3+4x");
-		ComplexFunction complexFunction = new ComplexFunction("plus",polynom,polynom);
-		polynom.multiply(new Monom ("2"));
-	}
-
-	@Test
 	void testComplexFunction() {
-
 
 		function f1=new Polynom("5x+2x^3-4x");	
 		function f2=new Polynom("4x^3-2+3x^2-5x");
@@ -40,8 +32,6 @@ class ComplexFunctionTest {
 		assertEquals("mul(2.0x^3+x,4.0x^3+3.0x^2-5.0x-2.0)", cf1.toString());
 		assertEquals("div(9.0x^3-4.0x^2-5.0x,2.0x^3+12.0x+9.0)", cf2.toString());
 		assertEquals("2.0x^3+x", cf3.toString());
-
-
 	}
 
 	@Test
@@ -74,7 +64,6 @@ class ComplexFunctionTest {
 		String c="plus(-1.0x^4+2.5x^2+3,plus(0.5x^5-1.5x+5.0,3.5x^4))";
 		String d="plus(div(8.0x^2+2.0x^2+3,5x^3),plus(7.5x^5-1.5x+5.0,mul(3.5x^4,2)))";
 		String f="none(6,4)";  //cant have 2 functions and no operation
-
 
 		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
@@ -134,7 +123,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
 
-
 		assertEquals(66.5, cf.f(3));
 		assertEquals(14.7, cf1.f(2.0));
 		assertEquals(0.0, cf2.f(-2));
@@ -150,7 +138,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
-
 
 		assertEquals(-6771.0, cf.f(3));
 		assertEquals(-59.4000, cf1.f(2.0),0.000001);
@@ -168,7 +155,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
 
-
 		assertEquals(-0.16666666, cf.f(2),0.0000001);
 		assertEquals(-0.448097, cf1.f(3.5),0.000001);
 		assertEquals(2.03125, cf2.f(-4.25));	
@@ -185,12 +171,9 @@ class ComplexFunctionTest {
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
 
-
 		assertEquals(86.85183, cf.f(2.8),0.0001);
 		assertEquals(6.546875, cf1.f(1.5),0.000001);
 		assertEquals(3.75, cf2.f(-0.25));	
-
-
 	}
 
 	@Test
@@ -202,7 +185,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
-
 
 		assertEquals(-169.41359, cf.f(3.8),0.0001);
 		assertEquals(-1680.5625, cf1.f(6.5),0.0001);
@@ -219,7 +201,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
 
-
 		assertEquals(1.304674, cf.f(-1.8),0.0001);
 		assertEquals(-104195.29999, cf1.f(2),0.001);
 		assertEquals(8.0, cf2.f(0),0.00001);
@@ -230,15 +211,16 @@ class ComplexFunctionTest {
 		String a="mul(-1.0x^4+2.5x^2+3,0.5x^5-1.5x+5.0)";
 		String b="div(-1.0x^4+2.4x^2+3.1,0.5x^5-1.5x+5.0)";
 		String c="mul(plus(1.0x+1.0,plus(mul(1.0x+3.0,1.0x-2.0),1.0x+4.0)),2.0)";
-
+		
 		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
 
-
 		assertEquals(0.6024, cf.left().f(-1.8),0.0001);
 		assertEquals(3.6375, cf1.left().f(0.5),0.001);
 		assertEquals(-1.0, cf2.left().f(-3),0.00001);
+		assertEquals("-1.0x^4+2.5x^2+3.0", cf.left().toString());
+		assertEquals("plus(x+1.0,plus(mul(x+3.0,x-2.0),x+4.0))", cf2.left().toString());
 	}
 
 	@Test
@@ -251,10 +233,10 @@ class ComplexFunctionTest {
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
 
-
 		assertEquals(-1.747840, cf.right().f(-1.8),0.0001);
 		assertEquals(4.265625, cf1.right().f(0.5),0.001);
 		assertEquals(2.0, cf2.right().f(-3),0.00001);
+		assertEquals("2.0", cf2.right().toString());
 	}
 
 	@Test
@@ -266,7 +248,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
-
 
 		assertEquals("Times" ,cf.getOp().toString());
 		assertEquals("Divid", cf1.getOp().toString());
@@ -317,7 +298,6 @@ class ComplexFunctionTest {
 		ComplexFunction cf4=(ComplexFunction)new ComplexFunction().initFromString(a1);
 		ComplexFunction cf5=(ComplexFunction)new ComplexFunction().initFromString(b1);
 		ComplexFunction cf6=(ComplexFunction)new ComplexFunction().initFromString(c1);
-
 
 		assertTrue(cf.equals(cf4));	
 		assertFalse(cf1.equals(cf5));

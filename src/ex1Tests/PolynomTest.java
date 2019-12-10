@@ -20,16 +20,13 @@ class PolynomTest {
 			try {
 				Monom m=new Monom(monoms[i]);
 				p.add(m);
-				result++;
-				
+				result++;				
 			}
 			catch (RuntimeException error) {
 				System.out.println(error.getMessage() +"  "+ monoms[i]);
 			}
 		}
-
 		assertEquals(4,result);
-
 	}
 
 	@Test
@@ -61,10 +58,8 @@ class PolynomTest {
 		Polynom p2=new Polynom(a);
 		p2.add(pa2);	
 
-
 		assertEquals("3.0x^4-5.0x^3-2.0x^2+0.0", p1.toString());
 		assertEquals("3.0x^4-5.0x^3+7.0x^2-3.0x+6.0", p2.toString());
-
 	}
 
 	@Test
@@ -89,8 +84,6 @@ class PolynomTest {
 
 		p1.add(m);
 		assertEquals("2.5x^2+5.0x-7.0", p1.toString());
-
-
 	}
 
 	@Test
@@ -109,7 +102,6 @@ class PolynomTest {
 
 		assertEquals("3.0x^4-5.0x^3+2.0x^2+4.0", p1.toString());
 		assertEquals("3.0x^4-5.0x^3-7.0x^2+3.0x-2.0", p2.toString());
-
 	}
 
 	@Test
@@ -142,11 +134,9 @@ class PolynomTest {
 		Polynom_able pa2=new Polynom(c);
 		Polynom_able pa3=new Polynom(d);
 
-
 		assertEquals(true, p1.equals(pa1));
 		assertEquals(true,  p1.equals(pa2));
 		assertEquals(false,  p1.equals(pa3));
-
 	}
 
 	@Test
@@ -179,7 +169,6 @@ class PolynomTest {
 		String b="-2x^3+8x-2";
 		String c="7x^2-1";
 
-
 		Polynom p1=new Polynom(a);
 		double r1=p1.root(1,3,Monom.EPSILON);
 
@@ -195,7 +184,6 @@ class PolynomTest {
 	@Test
 	void testCopy() {
 
-
 		Polynom_able copy=new Polynom("2x^2-5+3");
 		Polynom testcopy=new Polynom();
 		testcopy=(Polynom)copy.copy();
@@ -210,8 +198,6 @@ class PolynomTest {
 		Polynom_able copy3=new Polynom("-4x+1.2x^3-9");
 		Polynom testcopy3=new Polynom();
 		testcopy3=(Polynom)copy3.copy();
-
-
 
 		assertEquals(false, copy.equals(testcopy));
 		assertEquals(false, copy2.equals(testcopy2));
@@ -237,8 +223,6 @@ class PolynomTest {
 		assertEquals("-6.0x^2+8.0", pa2.toString());
 		assertEquals("14.0x+0.0", pa3.toString());
 		assertEquals("-12.0x+0.0",pa4.toString());
-
-
 	}
 
 	@Test

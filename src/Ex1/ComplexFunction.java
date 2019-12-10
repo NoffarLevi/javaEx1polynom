@@ -68,11 +68,10 @@ public class ComplexFunction implements complex_function
 			System.out.println("Unknown Operation");
 			break;
 		}
-		this.f1 = f1.copy();
-		
+		this.f1 = f1.copy();	
 		this.f2 = f2.copy();
-
 	}
+	
 	//given an x value compues f(x) for f1&f2 and then computes the given operation between them
 	@Override
 	public double f(double x)  { 
@@ -107,9 +106,7 @@ public class ComplexFunction implements complex_function
 			throw new ArithmeticException("No Applicable Operation"); 
 
 		case Error:
-
 			throw new ArithmeticException("Error in Operation");
-
 
 		default:
 			System.out.println("Unknown Operation");
@@ -119,11 +116,11 @@ public class ComplexFunction implements complex_function
 
 		return 0;
 	}
+	
     //Initializes a Complex Function given in the form of a string
 	@Override 
-	public function initFromString(String s)  
+	public function initFromString(String s)
 	{  
-
 		try {
 		if((s.contains("(") && s.contains(")")))  
 		{
@@ -152,18 +149,15 @@ public class ComplexFunction implements complex_function
 			function f2=initFromString(afterpeel.substring(indexOfComma+1,afterpeel.length()));//initializes f2 function goes into recursion
 
 			ComplexFunction cf=new ComplexFunction(oper,f1,f2);
-			
 			return cf;	
 
 		}
-		//initializes the algebraic expression expression
+		//initializes the algebraic expression
 		function p = new Polynom(s); 
-		function f= new ComplexFunction(p); 
-		
+		function f= new ComplexFunction(p); 	
 		return f;
 		
 		} catch (Exception e) {
-		//	e.printStackTrace();
 			throw new RuntimeException("Invalid input");
 		}
 	}
@@ -173,6 +167,7 @@ public class ComplexFunction implements complex_function
 		ComplexFunction  copyCat = new ComplexFunction(this.operation, this.f1, this.f2);
 		return copyCat;
 	}
+	
 	//initializes plus operation between the given Complex function and f1
 	@Override
 	public void plus(function f1) {
@@ -185,8 +180,8 @@ public class ComplexFunction implements complex_function
 			this.f2=f1.copy();
 			this.operation = Operation.Plus;
 		}
-
 	}
+	
 	//initializes mul operation between the given Complex function and f1
 	@Override
 	public void mul(function f1) {
@@ -200,6 +195,7 @@ public class ComplexFunction implements complex_function
 			this.operation = Operation.Times;
 		}
 	}
+	
 	//initializes divid operation between the given Complex function and f1
 	@Override
 	public void div(function f1) {
@@ -213,6 +209,7 @@ public class ComplexFunction implements complex_function
 			this.operation = Operation.Divid;
 		}
 	}
+	
 //initializes max operation between the given Complex function and f1
 	@Override
 	public void max(function f1) {
@@ -225,8 +222,8 @@ public class ComplexFunction implements complex_function
 			this.f2=f1.copy();
 			this.operation = Operation.Max;
 		}
-
 	}
+	
 	//initializes min operation between the given Complex function and f1
 	@Override
 	public void min(function f1) {
@@ -240,6 +237,7 @@ public class ComplexFunction implements complex_function
 			this.operation = Operation.Min;
 		}
 	}
+	
 	//initializes comp operation between the given Complex function and f1
 	@Override
 	public void comp(function f1) {
@@ -284,14 +282,11 @@ public class ComplexFunction implements complex_function
 			}
 			return true;
 		}
-		return false;
-		
-		
-		
+		return false;		
 	}
 	
 	public String toString() {
-		if(f2==null) {
+		if(f2==null) { 
 			return this.f1.toString();
 		}
 		String ans ="("+this.f1.toString()+","+this.f2.toString()+")";
