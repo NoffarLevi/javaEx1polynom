@@ -216,7 +216,7 @@ public class Functions_GUI implements functions {
 	
 	//initializes a new collection of functions from a given  json file
 	@Override
-	public void drawFunctions(String json_file) {
+	public void drawFunctions(String json_file) throws IOException {
 		Gson gson = new Gson();
 
  		 // JSON file to JsonElement, later String
@@ -227,7 +227,7 @@ public class Functions_GUI implements functions {
  			drawFunctions(json.height,json.width,json.rx,json.ry,json.resolution);
  		}
  		catch (Exception e) {
- 			//throw new Exception("No Such File Exists"); //added
+ 			
  		}
 
 	}
