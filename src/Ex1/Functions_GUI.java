@@ -138,6 +138,8 @@ public class Functions_GUI implements functions {
 		}
 		writer.close();		
 	}
+	
+	
 	//draws all the functions in the collection in a GUI window using the given parameters for the GUI windo and the range & resolution
 	@Override
 	public  void drawFunctions(int width, int height, Range rx, Range ry, int resolution) 
@@ -205,7 +207,6 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-
 	//initializes a new collection of functions from a given  json file
 	@Override
 	public void drawFunctions(String json_file) {
@@ -215,11 +216,13 @@ public class Functions_GUI implements functions {
 			JsonGui json = gson.fromJson(new FileReader(json_file), JsonGui.class);
 			String result = gson.toJson(json);
 			System.out.println(result);
-			drawFunctions(json.height,json.width,json.rx,json.ry,json.resolution);
+			
+			drawFunctions(json.height,json.width,new Range(json.rx[0],json.rx[1]),new Range(json.ry[0],json.ry[1]),json.resolution);
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
+	
 }

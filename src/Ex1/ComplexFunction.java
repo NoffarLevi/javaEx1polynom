@@ -116,17 +116,18 @@ public class ComplexFunction implements complex_function
 
 		return 0;
 	}
-	
+
     //Initializes a Complex Function given in the form of a string
 	@Override 
 	public function initFromString(String s)
 	{  
+		String aftertrimed=s.replaceAll("\\s", "");
 		try {
-		if((s.contains("(") && s.contains(")")))  
+		if((aftertrimed.contains("(") && aftertrimed.contains(")")))  
 		{
-			int indexof=s.indexOf('(');  //index of first '('
-			String oper=s.substring(0,indexof); //isolates main operation
-			String afterpeel=s.substring(indexof+1, s.length()-1); // complex function without main operation
+			int indexof=aftertrimed.indexOf('(');  //index of first '('
+			String oper=aftertrimed.substring(0,indexof); //isolates main operation
+			String afterpeel=aftertrimed.substring(indexof+1, aftertrimed.length()-1); // complex function without main operation
 			int openPare=0; //counter for # of Open parenthesis 
 			int closePare=0;//counter for # of Closed parenthesis
 			int indexOfComma=0; //Comma that splits Function1 & Function2
@@ -153,7 +154,7 @@ public class ComplexFunction implements complex_function
 
 		}
 		//initializes the algebraic expression
-		function p = new Polynom(s); 
+		function p = new Polynom(aftertrimed); 
 		function f= new ComplexFunction(p); 	
 		return f;
 		
@@ -167,6 +168,7 @@ public class ComplexFunction implements complex_function
 		ComplexFunction  copyCat = new ComplexFunction(this.operation, this.f1, this.f2);
 		return copyCat;
 	}
+
 	
 	//initializes plus operation between the given Complex function and f1
 	@Override

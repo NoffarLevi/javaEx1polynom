@@ -72,6 +72,7 @@ public class Monom implements function {
 	}
 	// ** add your code below ***
 
+
 	public Monom(String s)  {
 
 		if(checkBuildString(s)==false)
@@ -89,8 +90,13 @@ public class Monom implements function {
 	 */
 	public boolean checkBuildString( String s) 
 	{
-		String[] str = s.split("(x\\^)|(x)");
-		try
+		String k=new String(s.replaceAll("\\s", ""));// use the replaceAll function and delete all the spaces in the string
+		if(k.isEmpty()) {
+			System.out.println("Monom is Empty"); // check if after using replaceAll  Monom is empty
+			return false;
+		}
+		String[] str = k.split("(x\\^)|(x)");
+		try   //this part splitted to cases of array size each one is differnet and has different influnce on the creating of the Monom
 		{
 			if (str.length > 2) {
 				System.out.println("Invlaid Monom");
@@ -99,7 +105,7 @@ public class Monom implements function {
 
 			if (str.length == 0) 
 			{
-				if (s.equals("x")) {
+				if (k.equals("x")) {
 					set_coefficient(1);
 					set_power(1);
 					isCreated=true;
@@ -112,22 +118,22 @@ public class Monom implements function {
 
 			if (str.length == 1) 
 			{
-				if(s.contains("xx")) {
+				if(k.contains("xx")) {
 					System.out.println("Invalid Monom");
 					return false ;	
 				}
-				if (s.equals("-x")) {
+				if (k.equals("-x")) {
 					set_coefficient(-1);
 					set_power(1);
 					isCreated=true;
 					return true;
 				}
-				else if(s.contains("^")) {
+				else if(k.contains("^")) {
 
 					System.out.println("Invalid Monom");
 					return false ; 
 				}
-				else if (s.contains("x")) 
+				else if (k.contains("x")) 
 				{ 
 
 					set_coefficient(Double.parseDouble(str[0]));
@@ -169,18 +175,16 @@ public class Monom implements function {
 
 				}
 
-				else if(s.contains("^")){
+				else if(k.contains("^")){
 					int counter=0;
-					for (int i = 0; i < s.length(); i++) {
-						if (s.charAt(i)=='x') { 
+					for (int i = 0; i < k.length(); i++) {
+						if (k.charAt(i)=='x') { 
 							counter++;
 						}
 					}
 					if(counter>1)
 						return false;
 				}
-
-
 
 				set_coefficient(Double.parseDouble(str[0]));
 				set_power(Integer.parseInt(str[1]));
@@ -203,19 +207,26 @@ public class Monom implements function {
 	}
 
 	public void add(Monom m) {
+		if(this.isZero()) {
+			Monom tmp=new Monom(m);
+			this.set_coefficient(tmp.get_coefficient());
+			this.set_power(tmp.get_power());
+			return;
+		}
+		else {
 		if (m.get_power() != this.get_power()) {
 			// System.out.println("Monom can't be added");
 			return;
 		}
 		set_coefficient(m.get_coefficient() + this.get_coefficient());
+		}
 	}
 
 	public void multipy(Monom d) {
-		set_coefficient(d.get_coefficient() * this.get_coefficient()); // i did something else with * insteed of +
+		set_coefficient(d.get_coefficient() * this.get_coefficient()); 
 		set_power(d.get_power() + this.get_power());
 
 	}
-
 
 	public String toString() 
 	{
@@ -238,8 +249,6 @@ public class Monom implements function {
 
 	}
 
-
-
 	// ** Private Methods and Data ***
 
 	private void set_coefficient(double a) {
@@ -252,8 +261,6 @@ public class Monom implements function {
 		}
 		this._power = p;
 	}
-
-
 
 	private static Monom getNewZeroMonom() {
 		return new Monom(ZERO);

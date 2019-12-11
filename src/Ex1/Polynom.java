@@ -25,7 +25,6 @@ public class Polynom implements Polynom_able{
 	 * Zero (empty polynom)
 	 */
 
-
 	public Polynom() {}
 
 	/**
@@ -35,7 +34,12 @@ public class Polynom implements Polynom_able{
 	 */
 	public Polynom(String s) 
 	{
-		String [] arr=s.split("(\\+)|(?=-)");
+		String afterTrimed=s.replaceAll("\\s", ""); // we trimed the String and deleteing the spaces
+		if( afterTrimed.isEmpty()) {
+			System.out.println("Polynom is Empty");
+			return;
+		}
+		String [] arr=afterTrimed.split("(\\+)|(?=-)"); // we split the string and add it to array 
 		//System.out.println(Arrays.toString(arr));
 
 		for (int j = 0; j < arr.length; j++)
@@ -51,12 +55,6 @@ public class Polynom implements Polynom_able{
 		}
 		this.polynom.sort(Monom._Comp);
 
-	}
-	public static void main(String[] args) {
-		Polynom p=new Polynom("-2x^2-5x+4");
-
-		double c=p.root(0,2 , Monom.EPSILON);
-		System.out.println(c);
 	}
 
 	@Override
@@ -94,14 +92,13 @@ public class Polynom implements Polynom_able{
 				return;
 			}
 		}
-		polynom.add(m1)   ;  // why is this here??
+		polynom.add(m1)   ;  
 		polynom.sort(Monom._Comp);
 	}
 
 	@Override
 	public void substract(Polynom_able p1) {
-
-
+		
 		Iterator<Monom> it = p1.iteretor();
 		while(it.hasNext()) 
 		{

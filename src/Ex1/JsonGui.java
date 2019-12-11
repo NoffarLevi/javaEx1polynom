@@ -4,7 +4,7 @@ public class JsonGui
 {
 	int width;
 	int height;
-	Range rx;
-	Range ry;
+	double [] rx;
+	double [] ry;
 	int resolution;	
 }

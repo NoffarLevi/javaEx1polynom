@@ -149,9 +149,10 @@ class MonomTest {
 		Monom m2= new Monom("1.5x^3");
 		Monom m3= new Monom(0.5,4);
 		Monom m4=new Monom("0.001x^4");
+		
 		m1.add(m2);
 		m3.add(m4);
-
+		
 		assertEquals("-1.0x^3",m1.toString());	
 		assertEquals("1.5x^3",m2.toString());
 		assertEquals("0.501x^4",m3.toString());
