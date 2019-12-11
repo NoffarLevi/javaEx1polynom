@@ -6,7 +6,8 @@ variable(x) and a non negative integer exponent(b) in the form of ax^b. Ex: 2x^5
 Invalid input example a*x^b. 
 
 # Polynomial Class 
-A polynomial is an extension of a monomial. It’s an expression consisting of monomials and connecting them through addition and subtraction operations. In the form of a1x^b1+a2x^b2-a3x^b3. Ex: 2x^7+x^3-2x, x^4-5x-6 The polynomial class is represented as a Linkedlist of Monoms 
+A polynomial is an extension of a monomial. It’s an expression consisting of monomials and connecting them through addition and subtraction operations. In the form of a1x^b1+a2x^b2-a3x^b3. Ex: 2x^7+x^3-2x, x^4-5x-6 
+The polynomial class is represented as a Linkedlist of Monoms 
 
 # Complex Function Class
 A Complex Function is made up of two functions and a mathematical Operation (e.g addition, subtraction, max/min, etc.) that computes the two functions. Each function is made up an algebraic expression, a Monomial or Polynomial,  or a Complex Function. A Complex Function must include at least one function Ex: (Operation, Func1, Func2). Operation can either be in a string form or an enum Operation value
