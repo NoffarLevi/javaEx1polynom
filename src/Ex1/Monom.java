@@ -77,7 +77,7 @@ public class Monom implements function {
 
 		if(checkBuildString(s)==false)
 		{
-			throw new ArithmeticException("invlaid String "+s);
+			throw new ArithmeticException("Invlaid String "+s);
 		}
 
 	}
@@ -92,15 +92,15 @@ public class Monom implements function {
 	{
 		String k=new String(s.replaceAll("\\s", ""));// use the replaceAll function and delete all the spaces in the string
 		if(k.isEmpty()) {
-			System.out.println("Monom is Empty"); // check if after using replaceAll  Monom is empty
-			return false;
+			throw new RuntimeException("Monom is Empty ");  // check if after using replaceAll  Monom is empty
 		}
 		String[] str = k.split("(x\\^)|(x)");
 		try   //this part splitted to cases of array size each one is differnet and has different influnce on the creating of the Monom
 		{
 			if (str.length > 2) {
-				System.out.println("Invlaid Monom");
-				return false;
+				
+				throw new RuntimeException("Invalid Monom "+ s);
+				
 			}
 
 			if (str.length == 0) 
@@ -119,8 +119,7 @@ public class Monom implements function {
 			if (str.length == 1) 
 			{
 				if(k.contains("xx")) {
-					System.out.println("Invalid Monom");
-					return false ;	
+					throw new RuntimeException("Invalid Monom "+ s);	
 				}
 				if (k.equals("-x")) {
 					set_coefficient(-1);
@@ -130,8 +129,7 @@ public class Monom implements function {
 				}
 				else if(k.contains("^")) {
 
-					System.out.println("Invalid Monom");
-					return false ; 
+					throw new RuntimeException("Invalid Monom "+ s); 
 				}
 				else if (k.contains("x")) 
 				{ 

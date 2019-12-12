@@ -34,10 +34,11 @@ public class Polynom implements Polynom_able{
 	 */
 	public Polynom(String s) 
 	{
+		
 		String afterTrimed=s.replaceAll("\\s", ""); // we trimed the String and deleteing the spaces
 		if( afterTrimed.isEmpty()) {
-			System.out.println("Polynom is Empty");
-			return;
+			//System.out.println("Polynom is Empty");
+			throw new RuntimeException("Invalid Polynom hgjy");
 		}
 		String [] arr=afterTrimed.split("(\\+)|(?=-)"); // we split the string and add it to array 
 		//System.out.println(Arrays.toString(arr));
@@ -48,9 +49,9 @@ public class Polynom implements Polynom_able{
 			this.add(temp);
 			if (temp.isCreated==false) 
 			{
-				System.out.println("Invalid Polynom");
+				//System.out.println("");
 				this.polynom.clear();
-				return;
+				throw new RuntimeException("Invalid Polynom");
 			}
 		}
 		this.polynom.sort(Monom._Comp);

@@ -159,8 +159,9 @@ public class ComplexFunction implements complex_function
 		return f;
 		
 		} catch (Exception e) {
-			throw new RuntimeException("Invalid input");
+			throw new RuntimeException("Invalid input "+s);
 		}
+		
 	}
 
 	@Override

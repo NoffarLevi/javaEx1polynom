@@ -63,17 +63,24 @@ class ComplexFunctionTest {
 		String b="5+2x-3x+x^5";
 		String c="plus(-1.0x^4+2.5x^2+3,plus(0.5x^5-1.5x+5.0,3.5x^4))";
 		String d="plus(div(8.0x^2+2.0x^2+3,5x^3),plus(7.5x^5-1.5x+5.0,mul(3.5x^4,2)))";
-		String f="none(6,4)";  //cant have 2 functions and no operation
+		String f="plus(mul(3x,div(5,5x^2)adasd),3x)";  //wrong input
 
-		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
-		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
-		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
-		ComplexFunction cf4=(ComplexFunction)new ComplexFunction().initFromString(d);
-		try {	ComplexFunction cf3=(ComplexFunction)new ComplexFunction().initFromString(f);
-		} catch (Exception e) {
-			System.out.println("Invalid Complex Function String");
+		ComplexFunction cf=null;
+		ComplexFunction cf1=null;
+		ComplexFunction cf2=null;
+		ComplexFunction cf4=null;
+		ComplexFunction cf3=null;
+		try {
+			cf=(ComplexFunction)new ComplexFunction().initFromString(a);
+			cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
+			cf2=(ComplexFunction)new ComplexFunction().initFromString(c);
+			cf4=(ComplexFunction)new ComplexFunction().initFromString(d);
+			cf3=(ComplexFunction)new ComplexFunction().initFromString(f);
 		}
-	//	assertEquals("-1.0x^4+2.0x^2+3.0", cf.toString());
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		assertEquals("-1.0x^4+2.0x^2+3.0", cf.toString());
 		assertEquals("1.0x^5-1.0x+5.0", cf1.toString());
 		assertEquals("plus(-1.0x^4+2.5x^2+3.0,plus(0.5x^5-1.5x+5.0,3.5x^4))", cf2.toString());
 		assertEquals("plus(div(10.0x^2+3.0,5.0x^3),plus(7.5x^5-1.5x+5.0,mul(3.5x^4,2.0)))", cf4.toString());
@@ -87,7 +94,7 @@ class ComplexFunctionTest {
 		polynom.multiply(new Monom ("2")); //we changed Polynom by multiflied it with 2 but it didnt change the complex function
 		System.out.println(polynom);
 		System.out.println(cf0.toString());
-		
+
 		String a="3+2x^2-x^4";
 		String b="div(5+2x-3x+x^5,mul(4x^4+4,-6x^3))";
 		String c="plus(-1.0x^4+2.5x^2+3,plus(0.5x^5-1.5x+5.0,3.5x^4))";
@@ -99,7 +106,7 @@ class ComplexFunctionTest {
 		function copy1=new ComplexFunction(cf.copy());
 		function copy2=new ComplexFunction(cf1.copy());
 		function copy3=new ComplexFunction(cf2.copy());
-		
+
 
 		assertTrue( cf0.equals(polynom));		
 		assertEquals("-1.0x^4+2.0x^2+3.0", copy1.toString());
@@ -211,7 +218,7 @@ class ComplexFunctionTest {
 		String a="mul(-1.0x^4+2.5x^2+3,0.5x^5-1.5x+5.0)";
 		String b="div(-1.0x^4+2.4x^2+3.1,0.5x^5-1.5x+5.0)";
 		String c="mul(plus(1.0x+1.0,plus(mul(1.0x+3.0,1.0x-2.0),1.0x+4.0)),2.0)";
-		
+
 		ComplexFunction cf=(ComplexFunction)new ComplexFunction().initFromString(a);
 		ComplexFunction cf1=(ComplexFunction)new ComplexFunction().initFromString(b);
 		ComplexFunction cf2=(ComplexFunction)new ComplexFunction().initFromString(c);

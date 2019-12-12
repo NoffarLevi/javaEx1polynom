@@ -108,7 +108,7 @@ class MonomTest {
 
 	@Test
 	void testMonomString() {
-		String [] monoms= {"-2.4x^3","13.0x^3","5x-4","0.002x^4","0.01","3x^2-5x+3"};
+		String [] monoms= {"-2.4x^3","13.0x^3","5x-4","0.002x^4","0.01","3x^2-5x+3","3xgh "};
 		int result=0;
 		for (int i = 0; i < monoms.length; i++)
 		{
@@ -118,7 +118,7 @@ class MonomTest {
 				result++;
 			}
 			catch (Exception e) {
-
+					System.out.println(e.getMessage());
 			}
 		}
 		assertEquals(4,result);	
