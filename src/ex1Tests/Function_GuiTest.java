@@ -83,7 +83,7 @@ class Function_GuiTest {
 		}
 		f1.add(max);
 		f1.add(min);
-		f1.drawFunctions("gsontest.json");
+		f1.drawFunctions("jsontest.json");
 	}
 
 }
